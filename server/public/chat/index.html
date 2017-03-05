@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index.html</title>
+	<link rel="stylesheet" href="/css/bootstrap.css"/>
+	<!-- socket.io 관련 javascript 로딩하기  -->
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/jquery-1.11.2.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>socket.io 모듈 테스트</h3>
+	<input type="text" id="inputMsg"/>
+	<button id="sendBtn">전송</button>
+	<ul id="msgList">
+		
+	</ul>
+</div>
+<script>
+
+	// 웹소켓 접속하기
+	var socket=io.connect();
+
+	//전송 버튼을 눌렀을때 실행할 함수 등록 
+	$("#sendBtn").click(function(){
+		//입력한 문자열을 읽어온다.
+		var msg = $("#inputMsg").val();
+		//socket 에 이벤트를 발생 시켜서 서버에 전송한다.
+		socket.emit("sendMessage", msg);
+	});
+	//서버가 발생시키는 이벤트 처리 
+	socket.on("getMessage", function(msg){
+		//전달된 문자열을 출력하기 
+		$("<li/>").text(msg).prependTo("#msgList");
+	});
+</script>	
+</body>
+</html>

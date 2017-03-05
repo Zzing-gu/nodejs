@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test02.html</title>
+	<link rel="stylesheet" href="/css/bootstrap.css"/>
+	<script src="/js/jquery-1.11.2.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>Ajax 테스트2</h3>
+	<button id="getListBtn">목록 받아오기</button>
+	<ul id="msgList">
+		
+	</ul>
+</div>
+<script>
+	$("#getListBtn").click(function(){
+		$.ajax({
+			url:"/ajax/getlist",
+			method:"get",
+			success:function(data){
+				//console.log(data);
+				//응답된 html 형식의 문자열을 이용해서 문서객체를 만들어서 ul 요소에 넣어준다.
+				$("#msgList").html(data);
+			}
+		});
+	});
+</script>	
+</body>
+</html>

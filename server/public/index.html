@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>nav</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<style>
+
+
+		.right{
+			width: 50px;
+			height: 100%;
+			position: fixed;
+			left: 97%;
+			/*background-color: #cecece;*/
+			display: table;
+			text-align: center;
+			vertical-align: middle;
+			z-index: 2;
+		}
+		.bookmark{
+			vertical-align: middle;
+			display: table-cell;
+
+		}
+		li{
+			list-style: none;
+		}
+		.bookmark>li>a{
+			text-decoration: none;
+			font-size: 20px;
+			margin-bottom: 25px;
+		}
+
+
+
+
+
+
+
+		.navbar{
+				border-bottom: 1px solid #cecece;
+				padding-top: 15px;
+				z-index: 2;
+		}
+
+		#myNav{
+
+			transition: all 0.7s linear;
+
+
+		}
+
+
+		/* 내가 최근에 만든 css 들 */
+		.navbarTrans{
+			padding-top: 30px;
+			background:transparent;
+			border-bottom: 1px solid transparent;
+
+		}
+
+
+		/*첫 위*/
+		.section-header{
+			background-image: url("images/bluesky.png");
+			background-size: cover;
+			/*background-repeat: no-repeat;*/
+			height: 100vh;
+			/*overflow:hidden; */
+			/*overflow: scroll*/;
+			/*color:white;*/
+			/*font-family: 'Source Sans Pro', sans-serif;*/
+			/*font-weight: 300;*/
+			position: relative;
+			/*z-index:10;*/
+			background-attachment: fixed;
+		}
+
+		 .section-header > .content{
+		 	transform: translateX(-50%) translateY(-50%);
+		 	top: 42%;
+		 	left: 50%;
+		 	position: absolute;
+		 	text-align: center;
+		 	/*margin: 0 auto;*/
+		 	font-family: Verdana, Geneva, sans-serif;
+		 }
+
+
+
+		.section-main{
+			color:#000;
+			text-shadow: none;
+			text-align: center;
+			padding: 10rem 17rem;
+
+		}
+
+
+		/* 사이드 내비! */
+
+		/* The side navigation menu */
+		.sidenav {
+		    height: 100%; /* 100% Full-height */
+		    width: 250px; /* 0 width - change this with JavaScript */
+		    position: fixed; /* Stay in place */
+		    z-index: 999; /* Stay on top */
+		    top: 0;
+		    left: 100%;
+		    background-color: #fff; /* Black*/
+		    overflow-x: hidden; /* Disable horizontal scroll */
+		    padding-top: 60px; /* Place content 60px from the top */
+		    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+
+		}
+
+		/* The navigation menu links */
+		.sidenav a {
+		    padding: 8px 8px 8px 32px;
+		    text-decoration: none;
+		    font-size: 25px;
+		    color: #818181;
+		    display: block;
+		    transition: 0.3s
+		}
+
+		/* When you mouse over the navigation links, change their color */
+		.sidenav a:hover, .offcanvas a:focus{
+		    color: #f1f1f1;
+		}
+
+		/* Position and style the close button (top right corner) */
+		.sidenav .closebtn {
+		    position: absolute;
+		    top: 0;
+		    right: 25px;
+		    font-size: 36px;
+		    margin-left: 50px;
+		}
+
+		/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+		#main {
+		    transition: margin-right .5s;
+		    padding: 20px;
+		}
+
+		/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+		@media screen and (max-height: 450px) {
+		    .sidenav {padding-top: 15px;}
+		    .sidenav a {font-size: 18px;}
+		}
+
+
+
+
+		/*리스폰 시브*/
+
+		.box{
+			height: 300px;
+
+			border: 1px solid red;
+			background: green;
+		}
+
+		.section-responsive{
+
+			height: 500px;
+
+		}
+
+		.section-responsive .box{
+			 border:20px solid white;
+		}
+
+		.section{
+			transition: all 0.7s linear;
+		}
+
+
+	</style>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+	<a href="signup_form.html">회원가입</a>
+	<a href="ajax/test01.html">Ajax 테스트</a>
+	<a href="/ajax/test02.html">Ajax 테스트2</a>
+	<a href="/ajax/test03.html">Ajax 테스트3</a>
+	<a href="/ajax/test04.html">Ajax 테스트4 (AngularJs)</a>
+	<a href="/ajax/test05.html">Ajax 테스트5 (AngularJs)</a>
+	<a href="/chat/index.html">쳇팅방(jQuery)</a>
+	<a href="/chat/index2.html">쳇팅방(Angular)</a>
+</div>
+
+
+
+
+<div style="padding: 0;" id="main">
+
+
+
+
+	<nav id="myNav" class="navbar navbarTrans navbar-default navbar-transparent navbar-fixed-top navbar-burger " role="navigation">
+
+      <div class="navbar-inner">
+            <div class="container">
+                <button id="menu-toggle" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example"></button>
+                <a target="_blank" href="#" class="navbar-brand" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif; color: white; font-size: 24px;"> Creative Team</a>
+       	   		<a onclick="openNav()"  href="javascript:void(0)" class="glyphicon glyphicon-menu-hamburger navbar-link navbar-text pull-right" style="margin-top: 10px; font-size: 24px; text-decoration: none; color:white; "></a>
+            </div>
+	</div>
+	</nav>
+
+
+
+	<div class=" right  ">
+		<div class="bookmark" id="book">
+			<li class="active" ><a class="glyphicon glyphicon-globe" href="#one"></a></li>
+			<li ><a class=" glyphicon glyphicon-globe" href="#two"></a></li>
+			<li ><a class=" glyphicon glyphicon-globe" href="#three"></a></li>
+		</div>
+	</div>
+
+
+
+
+
+	<section class="section section-header">
+		<div class="content">
+			<h1 style="color: white; font-size: 124px;">Front-End</h1>
+			<h5 style="color: white; font-size: 30px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">with some bootstrap, and Awsome features!</h5>
+
+
+		</div>
+
+	</section>
+
+	<section  class="section section-main">
+		<h2>This is reular container</h2>
+		<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi reiciendis aspernatur ducimus recusandae atque repudiandae illum dolorum ad quasi maiores cumque quod, impedit veritatis, delectus, corrupti corporis iure officia? Omnis.</div>
+
+	</section>
+
+
+	<section class="section section-header">
+		<div class="content">
+			<h1>FrontEnd</h1>
+			<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis veritatis dolore sequi consectetur vitae veniam, repudiandae magni facere eum iusto soluta aut modi adipisci dolorem aliquam et. Ipsum, eaque, at!</h5>
+
+
+
+		</div>
+
+	</section>
+
+	<section class="section section-responsive">
+		<div class="container">
+
+			<h1 style="margin-top:40px; text-align: center; height: 100px;">Story</h1>
+			<div class="row">
+				<div id="box1" class="box col-xs-12 col-sm-6 col-md-3"></div>
+				<div id="box2" class="box col-xs-12 col-sm-6 col-md-3"></div>
+				<div id="box3" class="box col-xs-12 col-sm-6 col-md-3"></div>
+				<div id="box4" class="box col-xs-12 col-sm-6 col-md-3"></div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<script src="js/jquery-3.1.1.js"></script>
+
+<script>
+	//$("#book a").smoothScroll();
+
+	//$.stellar();
+	// $('#top').stellar({verticalScrolling:ture});
+	$("#box1").hide();
+
+ 	// 정호석 스크롤 이벤트
+	var lastScrollTop = 0;
+
+	$(window).on("scroll",function(){
+
+		var scrollTop = $(document).scrollTop();
+		console.log(scrollTop);
+		// var st = $(this).scrollTop();
+
+		//맨꼭대기 일떄 액션
+		/*if(scrollTop!=0){
+			$(".top").removeClass("beLarge").addClass("beSmall");
+		}
+		 if(scrollTop==0){
+			$(".top").removeClass("beSmall").addClass("beLarge");
+		}
+		*/
+
+		// 스크롤을 위로 할때 아래로 내릴때 각각 액션!
+		if(scrollTop> lastScrollTop){
+			console.log("down for real");
+			$(".botTag").removeClass("beBack").addClass("beGone");
+			// $(".botTag").slideUp();
+		} else{
+			console.log(" up for sure");
+			$(".botTag").removeClass("beGone").addClass("beBack");
+			// $(".botTag").slideDown();
+		}
+
+		if(scrollTop>350){
+
+
+			$("#myNav").removeClass("navbarTrans");
+			$(".navbar-inner a").css({
+				color: "gray"
+			});
+		} else{
+
+
+			$("#myNav").addClass("navbarTrans");
+			$(".navbar-inner a").css({
+				color: "white"
+			});
+		}
+
+		if(scrollTop>1300){
+			$("#box1").show();
+
+
+		} else{
+
+
+
+		}
+		// 다 끝난뒤 라스트 스크롤 탑 갱신
+		lastScrollTop = scrollTop;
+	});
+
+	/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+	function openNav() {
+	    document.getElementById("mySidenav").style.left = "85%";
+	    //document.getElementById("main").style.marginRight = "250px";
+	}
+
+	/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+	function closeNav() {
+	    document.getElementById("mySidenav").style.left = "100%";
+	    //document.getElementById("main").style.marginRight = "0";
+	}
+
+</script>
+</body>
+</html>

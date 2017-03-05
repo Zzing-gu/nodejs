@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>index3.html</title>
+	<link rel="stylesheet" href="/css/bootstrap.css"/>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/angular.min.js"></script>
+	<script>
+		var myApp=angular.module("myApp",[]);
+		myApp.controller("Ctrl1",["$scope", function($scope){
+			//웹소켓 접속 
+			var socket=io.connect();
+			$scope.msgList=[];
+			$scope.sendClicked=function(){
+				//이벤트를 발생 시키면서 입력한 문자열을 전송한다.
+				socket.emit("sendMessage", $scope.inputMsg);
+			};
+
+			socket.on("getMessage", function(msg){
+				//전달된 문자열을 object 에 담아서 배열에 누적 시킨다.
+				//$scope.msgList.push({msg:msg}); //뒤에 추가
+				$scope.msgList.unshift({msg:msg}); //앞에 추가 
+				//UI 강제 업데이트 
+				$scope.$apply();
+			});
+		}]);
+	</script>
+</head>
+<body ng-controller="Ctrl1">
+<div class="container">
+	<h3>socket.io 테스트  (Angular)</h3>
+	<input type="text" ng-model="inputMsg"/>
+	<button ng-click="sendClicked()">전송</button>
+	<ul>
+		<li ng-repeat="tmp in msgList">{{tmp.msg}}</li>
+	</ul>
+</div>	
+</body>
+</html>

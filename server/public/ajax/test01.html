@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>/ajax/test01.html</title>
+	<link rel="stylesheet" href="/css/bootstrap.css"/>
+	<script src="/js/jquery-1.11.2.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>Ajax 테스트1</h3>
+	<form action="/ajax/send" method="post" id="msgForm">
+		<div class="form-group">
+			<label for="msg">메세지</label>
+			<input type="text" name="msg" id="msg" class="form-control"/>
+		</div>
+		<button class="btn btn-primary" type="submit">전송</button>
+	</form>
+</div>
+<script>
+	$("#msgForm").on("submit", function(){
+		//입력한 문자열 읽어오기
+		var msg = $("#msg").val();
+		//jquery 의 ajax 기능을 이용해서 전송하기
+		$.ajax({
+			url:"/ajax/send",
+			method:"post",
+			data:{msg:msg},
+			success:function(data){
+				alert(data);
+			}
+		});
+
+		return false;//폼 전송 막기 
+	});
+</script>	
+</body>
+</html>

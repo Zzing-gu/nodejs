@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>test05.html</title>
+	<link rel="stylesheet" href="/css/bootstrap.css"/>
+	<script src="/js/angular.min.js"></script>
+	<script>
+		var myApp=angular.module("myApp",[]);
+		myApp.controller("Ctrl1",["$scope","$http",function($scope, $http){
+			$scope.formData={};
+			$scope.send=function($event){
+				//폼 전송 이벤트 막기
+				$event.preventDefault();
+
+				//$http 서비스를 이용해서 ajax 전송하기
+				$http({
+					url:"/ajax/send",
+					method:"post",
+					data:$scope.formData
+				}).success(function(data){
+					alert(data);
+				});
+			};
+		}]);
+	</script>
+</head>
+<body ng-controller="Ctrl1">
+	<h3>ajax 폼 전송 테스트 angualrJs</h3>
+	<form ng-submit="send($event)" action="/ajax/send" method="post">
+		<div class="form-group">
+			<label for="msg">메세지</label>
+			<input ng-model="formData.msg" class="form-control" type="text" name="msg" id="msg"/>
+		</div>
+		<div class="form-group">
+			<label for="email">이메일</label>
+			<input ng-model="formData.email" class="form-control" type="text" id="email"/>
+		</div>
+		<button class="btn btn-primary" type="submit">전송</button>
+	</form>
+	<p>formData=<strong>{{formData}}</strong></p>
+</body>
+</html>
